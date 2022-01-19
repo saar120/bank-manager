@@ -1,20 +1,20 @@
 const express = require("express");
-const rootRouter = express.Router();
+const userRouter = express.Router();
 
-rootRouter.get("/getUsers", (req, res) => {
+userRouter.get("/getUsers", (req, res) => {
   res.send("all users");
 });
 
-rootRouter.get("/:id", (req, res) => {
+userRouter.get("/:id", (req, res) => {
   res.send("user");
 });
 
-rootRouter.post("/", (req, res) => {
+userRouter.post("/", (req, res) => {
   res.send("added user");
 });
 
-rootRouter.delete("/:id", (req, res) => {
+userRouter.delete("/:id", (req, res) => {
   res.send("removed user");
 });
 
-module.exports = rootRouter;
+module.exports = userRouter;
