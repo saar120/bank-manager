@@ -8,4 +8,10 @@ const validateObjectId = (id) => {
   }
 };
 
-module.exports = { validateObjectId };
+validateNumber = (number) => {
+  if (!Number.isInteger(number)) {
+    throw new Error("Invalid amount");
+  }
+};
+
+module.exports = { validateObjectId, validateNumber };

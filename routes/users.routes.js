@@ -1,6 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
-const { getAllUsers, addUser, getUser } = require("../controllers/controllers");
+const { getAllUsers, addUser, getUser, deposit, deleteUser, withdraw } = require("../controllers/controllers");
 
 userRouter.get("/", getAllUsers);
 
@@ -8,8 +8,10 @@ userRouter.get("/:id", getUser);
 
 userRouter.post("/", addUser);
 
-userRouter.delete("/:id", (req, res) => {
-  res.send("removed user");
-});
+userRouter.put("/deposit/:id", deposit);
+
+userRouter.put("/withdraw/:id", withdraw);
+
+userRouter.delete("/:id", deleteUser);
 
 module.exports = userRouter;
