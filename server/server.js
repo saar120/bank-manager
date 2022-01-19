@@ -15,7 +15,7 @@ const connectionURI = process.env.MONGODB_CONNECTION_URI;
 
 mongoose
   .connect(connectionURI)
-  .then(() => console.log("Database connected !"))
+  .then(() => console.log("Database connected"))
   .catch((err) => console.error(err));
 
 app.use("/users", userRouter);
