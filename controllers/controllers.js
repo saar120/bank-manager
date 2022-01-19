@@ -1,8 +1,9 @@
 const User = require("../models/user.model");
 
 const addUser = async (req, res) => {
-  const user = new User();
   try {
+    const { cash, credit } = req.body;
+    const user = new User({ cash: cash || 0, credit: credit || 0 });
     await user.save();
     res.status(200).send({ message: "Added Successfully" });
   } catch (error) {
@@ -15,7 +16,7 @@ const getAllUsers = async (req, res) => {
     const allUsers = await User.find();
     res.status(200).send({ users: allUsers });
   } catch (error) {
-    res.status(500).send({ message: error.message, error });
+    res.status(404).send({ message: error.message, error });
   }
 };
 
