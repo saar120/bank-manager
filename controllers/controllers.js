@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 
-const addUser = (req, res) => {
+const addUser = async (req, res) => {
   const user = new User();
   try {
     await user.save();
@@ -10,9 +10,9 @@ const addUser = (req, res) => {
   }
 };
 
-const getAllUsers = (req, res) => {
+const getAllUsers = async (req, res) => {
   try {
-    const allUsers = await User.findAll();
+    const allUsers = await User.find();
     res.status(200).send({ users: allUsers });
   } catch (error) {
     res.status(500).send({ message: error.message, error });
