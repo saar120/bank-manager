@@ -8,7 +8,7 @@ const validateObjectId = (id) => {
   }
 };
 
-validateNumber = (number) => {
+const validateNumber = (number) => {
   if (!Number.isInteger(number)) {
     throw new Error("Invalid amount");
   }
