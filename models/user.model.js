@@ -9,7 +9,7 @@ const userSchema = new Schema(
     credit: {
       type: Number,
       default: 0,
-      min: 0,
+      min: [0, "Credit need to be positive"],
     },
     isActive: {
       type: Boolean,
