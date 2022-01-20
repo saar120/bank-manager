@@ -1,8 +1,8 @@
 {
-  "name": "bank-api",
+  "name": "bank-manager",
   "version": "1.0.0",
-  "description": "api for bank manager app",
-  "main": "index.js",
+  "description": "bank manager app",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
