@@ -27,7 +27,7 @@ const getUser = async (req, res) => {
     validateObjectId(id);
     const user = await User.findById(id);
     if (!user) {
-      throw new Error(`User ${id} does not exist`);
+      throw new Error(`User does not exist`);
     }
     res.status(200).send({ user: user });
   } catch (error) {
