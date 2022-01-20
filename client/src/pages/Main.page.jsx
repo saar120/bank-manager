@@ -4,7 +4,6 @@ import InputForm from "../components/InputForm";
 
 export default function MainPage() {
   // const [user, setUser] = useState(null);
-
   const getUser = async (id) => {
     if (!id) return;
     try {
