@@ -9,8 +9,8 @@ export default function MainPage() {
 
   const getUser = async (id) => {
     if (!id) return;
-    const res = await axios.get(apiUrl + id);
-    console.log(res);
+    const { data } = await axios.get(apiUrl + id);
+    console.log(data);
   };
 
   return (
