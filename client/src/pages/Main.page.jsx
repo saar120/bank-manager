@@ -2,8 +2,7 @@ import React from "react";
 import axios from "axios";
 import InputForm from "../components/InputForm";
 
-const apiUrl = process.env.API_URL || "http://localhost:8080/api/users/";
-
+const apiUrl = process.env.REACT_APP_API_URL;
 export default function MainPage() {
   // const [user, setUser] = useState(null);
 
