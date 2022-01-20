@@ -22,7 +22,7 @@ mongoose
   .then(() => console.log("Database connected"))
   .catch((err) => console.error(err));
 
-app.use("/users", userRouter);
+app.use("/api/users", userRouter);
 
 app.listen(port, () => {
   console.log("Server is listening on port " + port);
