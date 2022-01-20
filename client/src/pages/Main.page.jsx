@@ -7,6 +7,7 @@ export default function MainPage() {
   // const [user, setUser] = useState(null);
 
   const getUser = async (id) => {
+    console.log(apiUrl);
     if (!id) return;
     const { data } = await axios.get(apiUrl + id);
     console.log(data);
