@@ -21,8 +21,8 @@ export default function Navbar() {
       <Link className="Link" to="/">
         Search User
       </Link>
-      <Link className="Link" to="/update">
-        Update User
+      <Link className="Link" to="/add">
+        Add User
       </Link>
       <Link className="Link" to="/transfer">
         Transfer

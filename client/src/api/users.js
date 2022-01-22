@@ -17,4 +17,9 @@ const deleteUser = async (id) => {
   return data;
 };
 
-export { getUserById, deleteUser, getAllUsers };
+const addUser = async ({ cash, credit } = {}) => {
+  const { data } = await usersAPI.post("/add", { data: { cash, credit } });
+  return data;
+};
+
+export { getUserById, deleteUser, getAllUsers, addUser };

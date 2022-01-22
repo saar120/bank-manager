@@ -5,7 +5,6 @@ export default function SearchForm({ callback }) {
 
   const getHandler = (e) => {
     if (e.type === "keydown" && e.code !== "Enter") return;
-    console.log(e);
     callback(searchTerm);
     setSearchTerm("");
   };
