@@ -18,7 +18,7 @@ const deleteUser = async (id) => {
 };
 
 const addUser = async ({ cash, credit } = {}) => {
-  const { data } = await usersAPI.post("/add", { data: { cash, credit } });
+  const { data } = await usersAPI.post("/add", { cash, credit });
   return data;
 };
 

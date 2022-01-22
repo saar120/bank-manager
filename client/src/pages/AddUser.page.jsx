@@ -12,7 +12,7 @@ export default function AddUserPage() {
       const res = await addUser(values);
       console.log(res);
     } catch (error) {
-      console.error(error);
+      console.error(error.response.data.error || "Error");
     }
   };
 
