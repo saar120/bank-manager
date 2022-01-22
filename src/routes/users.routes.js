@@ -10,11 +10,11 @@ const {
   updateCredit,
 } = require("../controllers/controllers");
 
-userRouter.get("/", getAllUsers);
+userRouter.get("/all", getAllUsers);
 
 userRouter.get("/:id", getUser);
 
-userRouter.post("/", addUser);
+userRouter.post("/add", addUser);
 
 userRouter.put("/deposit/:id", deposit);
 
