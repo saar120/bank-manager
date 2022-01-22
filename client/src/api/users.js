@@ -5,4 +5,9 @@ const getUserById = async (id) => {
   return data;
 };
 
-export { getUserById };
+const deleteUser = async (id) => {
+  const { data } = await usersAPI.delete(id);
+  return data;
+};
+
+export { getUserById, deleteUser };

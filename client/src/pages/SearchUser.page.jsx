@@ -1,32 +1,50 @@
 import React, { useState } from "react";
 import SearchUserPageStyled from "./pages.styled/SearchUser.styled";
-import { getUserById } from "../api/users";
+import { getUserById, deleteUser } from "../api/users";
 import SearchForm from "../components/SearchForm";
 import UserCard from "../components/UserCard";
 
 export default function SearchUser() {
   const [user, setUser] = useState(null);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const getUser = async (id) => {
     if (!id) return;
     try {
       const { user } = await getUserById(id);
-      setErrorMessage("");
+      setMessage("");
       setUser(user);
     } catch (error) {
       setUser(null);
       console.error(error.response.data.error || "Error");
-      setErrorMessage(error.response.data.error || "Error");
+      setMessage(error.response.data.error || "Error");
     }
+  };
+  const deleteHandler = async () => {
+    try {
+      const res = await deleteUser(user._id);
+      setUser(null);
+      setMessage(res.message);
+    } catch (error) {
+      console.error(error.response.data.error || "Error");
+    }
+  };
+  const userRender = () => {
+    if (!user) return;
+    return (
+      <>
+        <UserCard user={user} />
+        <button onClick={deleteHandler}>Delete User</button>
+      </>
+    );
   };
 
   return (
     <SearchUserPageStyled>
       <div className="header">Search User</div>
       <SearchForm callback={getUser} />
-      {user && <UserCard user={user} />}
-      {errorMessage && <div>{errorMessage}</div>}
+      {userRender()}
+      {message && <div>{message}</div>}
     </SearchUserPageStyled>
   );
 }
