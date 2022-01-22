@@ -6,8 +6,10 @@ const getUserById = async (id) => {
 };
 
 const getAllUsers = async () => {
-  const { data } = await usersAPI.get("/");
-  return data;
+  const {
+    data: { users },
+  } = await usersAPI.get("all");
+  return users;
 };
 
 const deleteUser = async (id) => {
@@ -15,4 +17,4 @@ const deleteUser = async (id) => {
   return data;
 };
 
-export { getUserById, deleteUser };
+export { getUserById, deleteUser, getAllUsers };
