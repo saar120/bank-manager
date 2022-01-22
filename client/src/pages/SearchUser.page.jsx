@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchUserPageStyled from "./pages.styled/SearchUser.styled";
+import PageStyled from "./pages.styled/Page.styled";
 import { getUserById, deleteUser } from "../api/users";
 import SearchForm from "../components/SearchForm";
 import UserCard from "../components/UserCard";
@@ -41,11 +41,11 @@ export default function SearchUser() {
   };
 
   return (
-    <SearchUserPageStyled>
+    <PageStyled>
       <div className="header">Search User</div>
       <SearchForm callback={getUser} />
       {message && <div>{message}</div>}
       {userRender()}
-    </SearchUserPageStyled>
+    </PageStyled>
   );
 }
