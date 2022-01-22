@@ -3,7 +3,9 @@ import React, { useState } from "react";
 export default function SearchForm({ callback }) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const getHandler = () => {
+  const getHandler = (e) => {
+    if (e.type === "keydown" && e.code !== "Enter") return;
+    console.log(e);
     callback(searchTerm);
     setSearchTerm("");
   };
@@ -11,7 +13,7 @@ export default function SearchForm({ callback }) {
   return (
     <div>
       <div className="form">
-        <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" />
+        <input value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} type="text" onKeyDown={getHandler} />
         <button onClick={getHandler}>Get User</button>
       </div>
     </div>
