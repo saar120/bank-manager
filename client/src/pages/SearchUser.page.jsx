@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchUserPageStyled from "./pages.styled/SearchUser.styled";
 import { getUserById } from "../api/users";
 import SearchForm from "../components/SearchForm";
+import UserCard from "../components/UserCard";
 
 export default function SearchUser() {
   const [user, setUser] = useState(null);
@@ -24,7 +25,7 @@ export default function SearchUser() {
     <SearchUserPageStyled>
       <div className="header">Search User</div>
       <SearchForm callback={getUser} />
-      {user && <div>{user._id}</div>}
+      {user && <UserCard user={user} />}
       {errorMessage && <div>{errorMessage}</div>}
     </SearchUserPageStyled>
   );
