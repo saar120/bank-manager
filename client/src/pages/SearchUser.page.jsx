@@ -26,6 +26,7 @@ export default function SearchUser() {
       setUser(null);
       setMessage(res.message);
     } catch (error) {
+      setMessage("Something went wrong");
       console.error(error.response.data.error || "Error");
     }
   };
@@ -43,8 +44,8 @@ export default function SearchUser() {
     <SearchUserPageStyled>
       <div className="header">Search User</div>
       <SearchForm callback={getUser} />
-      {userRender()}
       {message && <div>{message}</div>}
+      {userRender()}
     </SearchUserPageStyled>
   );
 }
