@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function InputForm({ callback }) {
+export default function SearchForm({ callback }) {
   const [searchTerm, setSearchTerm] = useState("");
 
   const getHandler = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SearchUserPageStyled from "./pages.styled/SearchUser.styled";
 import { getUserById } from "../api/users";
-import InputForm from "../components/InputForm";
+import SearchForm from "../components/SearchForm";
 
 export default function SearchUser() {
   const [user, setUser] = useState(null);
@@ -23,7 +23,7 @@ export default function SearchUser() {
   return (
     <SearchUserPageStyled>
       <div className="header">Search User</div>
-      <InputForm callback={getUser} />
+      <SearchForm callback={getUser} />
       {user && <div>{user._id}</div>}
       {errorMessage && <div>{errorMessage}</div>}
     </SearchUserPageStyled>
