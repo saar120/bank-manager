@@ -1,16 +1,63 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import { getAllUsers } from "../api/users";
+import { Table, TableCell, TableRow, TableBody, TableHead } from "@mui/material";
+
+const TableStyled = styled(Table)`
+  && {
+    width: clamp(300px, 70vw, 1000px);
+  }
+`;
 
 export default function AllUsersPage() {
   const [users, setAllUsers] = useState([]);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    const setAllUsers = async () => {
-      const users = await getAllUsers();
-      console.log(users);
+    const getAndSetAllUsers = async () => {
+      try {
+        const users = await getAllUsers();
+        setAllUsers(users);
+      } catch (error) {
+        console.error(error.response.data.error || "Error");
+        setMessage(error.response.data.error || "Error");
+      }
     };
-    setAllUsers();
+    getAndSetAllUsers();
   }, []);
 
-  return <div>all users</div>;
+  const renderTable = () => {
+    if (!users) return;
+    return (
+      <div>
+        <TableStyled aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>ID</TableCell>
+              <TableCell>Cash</TableCell>
+              <TableCell>Credit</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => {
+              return (
+                <TableRow key={user._id}>
+                  <TableCell>{user._id}</TableCell>
+                  <TableCell align="left">{user.cash}</TableCell>
+                  <TableCell align="left">{user.credit}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </TableStyled>
+      </div>
+    );
+  };
+
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      {message && <div>{message}</div>}
+      {renderTable()}
+    </div>
+  );
 }
