@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import MainPage from "./pages/Main.page";
+import SearchUserPage from "./pages/SearchUser.page";
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route path="/" element={<SearchUserPage />} />
           <Route path="/transfer" />
           <Route path="/allusers" />
           <Route path="/update" />
