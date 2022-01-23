@@ -8,6 +8,7 @@ export default function AddUserPage() {
     const values = Object.fromEntries(data.entries());
     console.log(values);
     try {
+      // dont use try catch in react you can read on error boundaries and handle the static events api request and all the things that react dosen't handles
       const res = await addUser(values);
       console.log(res);
     } catch (error) {

@@ -11,9 +11,10 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<SearchUserPage />} />
+          {/* <Route path="/" element={<SearchUserPage />} /> */}
           <Route path="/transfer" />
           <Route path="/allusers" element={<AllUsersPage />} />
+          {/* /allUsers */}
           <Route path="/add" element={<AddUserPage />} />
         </Routes>
       </Router>

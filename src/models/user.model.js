@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema(
   {
     cash: {
-      type: Number,
+      type: [Number, "please put here a number"], // remember to check it and update us
       default: 0,
     },
     credit: {

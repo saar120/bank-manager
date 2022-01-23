@@ -1,13 +1,13 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const userRouter = require("./src/routes/users.routes");
 const path = require("path");
-require("dotenv").config();
+const userRouter = require("./src/routes/users.routes");
+const { PORT } = require("./src/config/env.config");
 
 const app = express();
-
-const port = process.env.PORT || 8080;
 
 const publicPath = path.join(__dirname, "client/build");
 
@@ -28,6 +28,6 @@ app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-app.listen(port, () => {
-  console.log("Server is listening on port " + port);
+app.listen(PORT, () => {
+  console.log("Server is listening on port " + PORT);
 });

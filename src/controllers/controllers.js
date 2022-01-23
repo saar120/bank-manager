@@ -4,6 +4,7 @@ const { validateObjectId, validateNumber } = require("./utils");
 const addUser = async (req, res) => {
   try {
     const { cash, credit } = req.body;
+    // function that validate the fields in the user
     const user = new User({ cash: cash || 0, credit: credit || 0 });
     await user.save();
     res.status(200).send({ message: "Added Successfully" });
@@ -23,7 +24,7 @@ const getAllUsers = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const id = req.params.id;
+    const { id } = req.params;
     validateObjectId(id);
     const user = await User.findById(id);
     if (!user) {
@@ -37,10 +38,10 @@ const getUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const id = req.params.id;
+    const { id } = req.params;
     validateObjectId(id);
     const { deletedCount } = await User.deleteOne({ _id: id });
-    if (deletedCount === 0) throw new Error(`User ${id} does not exist`);
+    if (!deletedCount) throw new Error(`User ${id} does not exist`);
     res.status(200).send({ message: `User ${id} deleted` });
   } catch (error) {
     res.status(404).send({ error: error.message });
@@ -49,9 +50,9 @@ const deleteUser = async (req, res) => {
 
 const deposit = async (req, res) => {
   try {
-    const id = req.params.id;
+    const { id } = req.params;
+    const { amount } = req.body;
     validateObjectId(id);
-    const amount = req.body.amount;
     validateNumber(amount);
     const user = await User.findById(id);
     if (!user) {
@@ -68,9 +69,11 @@ const deposit = async (req, res) => {
 const withdraw = async (req, res) => {
   try {
     const id = req.params.id;
+    // change it to {id}
     const amount = req.body.amount;
     validateObjectId(id);
     validateNumber(amount);
+    // validateIsNumber
     const user = await User.findById(id);
     if (!user) {
       return res.status(404).send({ error: "User not found" });
@@ -79,6 +82,7 @@ const withdraw = async (req, res) => {
     if (amount > userTotal) {
       throw new Error("Not enough money to withdraw");
     }
+    // User.findByIdAndUpdate(id, {$set;:{data}}, {runValidators:true})
     user.cash -= amount;
     await user.save();
     res.status(200).send({ message: `withdraw ${amount}` });
@@ -88,18 +92,23 @@ const withdraw = async (req, res) => {
 };
 
 const updateCredit = async (req, res) => {
-  const id = req.params.id;
-  const creditAmount = req.body.amount;
   try {
+    const id = req.params.id;
+    const creditAmount = req.body.amount;
+    // { }
     validateObjectId(id);
     validateNumber(creditAmount);
     const user = await User.findById(id);
     user.credit = creditAmount;
-    const updatedUser = await user.save();
-    res.status(200).send({ message: `User Credit is now ${updatedUser.credit}` });
+    const {
+      updatedUser: { credit },
+    } = await user.save();
+    res.status(200).send({ message: `User Credit is now ${credit}` });
   } catch (error) {
     res.status(500).send({ error: error.message });
   }
 };
 
 module.exports = { getAllUsers, getUser, addUser, deposit, deleteUser, withdraw, updateCredit };
+// utils small and pure functions something like: const removeEmptystrings = (str) => //code that removes the empty strings
+// services can be a medium size functions they should serve the needs for the query to the db
